@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
-#   Extending the base devise model in order to allow the username parameter to be stored. Also added to routes.rb.
+  # Overrides several methods in the base devise model in order to allow the username parameter to be stored. Remember
+  # to change the devise path in routes.rb.
 
   private
 
