@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Added "controllers: {registrations: 'registration'}" to the following line in order to extend the devise model
+  # to allow for inclusion of :username parameter.
+  devise_for :users, controllers: {registrations: 'registrations'}
   get 'pages/home'
 
   # The priority is based upon order of creation: first created -> highest priority.
