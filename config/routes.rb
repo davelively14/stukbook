@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # devise handles everything else. Only want users to work for 'show' and 'index'
+  resources :users, only: [:show]
+
   # Added "controllers: {registrations: 'registration'}" to the following line in order to override the devise model
   # to allow for inclusion of :username parameter.
   devise_for :users, controllers: {registrations: 'registrations'}
