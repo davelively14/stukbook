@@ -1,17 +1,16 @@
 Rails.application.routes.draw do
-  # devise handles everything else. Only want users to work for 'show' and 'index'
-  resources :users, only: [:show]
-
   # Added "controllers: {registrations: 'registration'}" to the following line in order to override the devise model
   # to allow for inclusion of :username parameter.
   devise_for :users, controllers: {registrations: 'registrations'}
-  get 'pages/home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'pages#home'
+
+  # devise handles everything else. Only want users to work for 'show' and 'index'
+  resources :users, only: [:show]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
