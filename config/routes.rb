@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   # devise handles everything else. Only want users to work for 'show' and 'index'
-  resources :users, only: [:show]
+  resources :users, only: [:show, :index]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
