@@ -16,4 +16,17 @@ class User < ActiveRecord::Base
   def request_friendship(target_user)
     self.friendships.create(friend: target_user)
   end
+
+  def pending_friend_requests_from
+    self.inverse_friendships.where(state: "pending")
+  end
+
+  def pending_friend_requests_to
+    self.friendships.where(state: "pending")
+  end
+
+  def active_friends
+    # Use map to associate the friend objects associated with friendships.
+    self.friendships.where(state: "active").map(&:friend) + self.inverse_friendships.where(state: "active").map(&:user)
+  end
 end
