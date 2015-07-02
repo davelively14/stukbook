@@ -29,4 +29,20 @@ class User < ActiveRecord::Base
     # Use map to associate the friend objects associated with friendships.
     self.friendships.where(state: "active").map(&:friend) + self.inverse_friendships.where(state: "active").map(&:user)
   end
+
+  def friendship_status(target_user)
+    friendship = Friendship.where(user_id: [self.id,target_user.id], friend_id: [self.id,target_user.id])
+    if friendship.any?
+      if friendship.first.state == "active"
+        return "friends"
+      elsif friendship.first.user == self
+        return "pending"
+      else
+        return "requested"
+      end
+    else
+       "not_friends"
+    end
+  end
+
 end
