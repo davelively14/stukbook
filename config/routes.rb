@@ -12,6 +12,12 @@ Rails.application.routes.draw do
   # devise handles everything else. Only want users to work for 'show' and 'index'
   resources :users, only: [:show, :index]
 
+  resources :friendships, only: [:create, :destroy, :accept] do
+    member do
+      put :accept
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

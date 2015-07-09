@@ -45,4 +45,7 @@ class User < ActiveRecord::Base
     end
   end
 
+  def friendship_relation(target_user)
+    Friendship.where(user_id: [self.id,target_user.id], friend_id: [self.id,target_user.id]).first
+  end
 end
