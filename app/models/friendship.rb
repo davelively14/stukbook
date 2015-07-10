@@ -1,4 +1,6 @@
 class Friendship < ActiveRecord::Base
+  include PublicActivity::Model
+
   belongs_to :user
   # Can't belong to :user more than once, so creates a 'friend' as a type of class 'User'. This will automatically make
   # friend_id:integer in the model be the FK.
